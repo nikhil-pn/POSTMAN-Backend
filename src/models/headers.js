@@ -7,7 +7,7 @@ class Header extends Model {}
 Header.init(
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },

@@ -7,7 +7,7 @@ class Request extends Model {}
 Request.init(
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
