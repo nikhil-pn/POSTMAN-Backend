@@ -1,3 +1,4 @@
+import { response } from "express";
 import jwt from "jsonwebtoken";
 
 const JWT_SECERT = "secert";
@@ -26,5 +27,29 @@ export const errorHandler = (err, req, res, next) => {
       return res.status(500).json({ error: "Something went wrong" });
   }
 
-  next(err)
+  next(err);
+};
+
+export const tokenValidator = (req, res, next) => {
+  const token = request.token;
+  if (!token) {
+    return res.status(401).json({ error: "TOken Missing" });
+  }
+  const decodedToken = jwt.verify(token, JWT_SECERT);
+  if (!decodedToken.id) {
+    return res.status(401).json({ error: "Invalid Token login again" });
+  }
+  next();
+};
+
+export const unknowEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknow endpoint" });
+};
+
+export const validateToken = (req, res, next) => {
+  const decodedToken = jwt.verify(token, JWT_SECERT);
+  if (!req.token || !decodedToken?.id) {
+    return res.status(401).json({ error: "Token missing or invaild" });
+  }
+  return decodedToken;
 };
