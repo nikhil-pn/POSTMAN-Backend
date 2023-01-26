@@ -27,7 +27,7 @@ Header.init(
       defaultValue: false,
     },
   },
-  sequelize
+  { sequelize }
 );
 
 export default Header;
